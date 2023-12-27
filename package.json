@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "build": "pnpm --recursive --filter=./packages/** build",
+    "dev": "pnpm --recursive --parallel --filter=./packages/** dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/koa": "^2.13.12",
+    "@types/node": "^20.10.5",
+    "koa": "^2.14.2",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "description": "",
+  "scripts": {
+    "dev": "npx ts-node ./app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "toa": "workspace:*",
+    "ts-node": "^10.9.2"
+  }
+}

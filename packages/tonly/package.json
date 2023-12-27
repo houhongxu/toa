@@ -1,0 +1,23 @@
+{
+  "name": "tonly",
+  "version": "0.0.1",
+  "description": "return whitelisted properties of an object",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "./lib"
+  ],
+  "scripts": {
+    "build": "npx tsup ./src/** --dts --out-dir=lib",
+    "dev": "pnpm build --watch"
+  },
+  "keywords": [
+    "utility",
+    "util",
+    "object",
+    "whitelist"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}

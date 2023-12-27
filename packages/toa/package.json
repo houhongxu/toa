@@ -1,0 +1,20 @@
+{
+  "name": "toa",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./lib/application.js",
+  "types": "./lib/application.js",
+  "files": [
+    "./lib"
+  ],
+  "scripts": {
+    "build": "npx tsup ./src/** --dts --out-dir=lib",
+    "dev": "pnpm build --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tonly": "workspace:*"
+  }
+}
