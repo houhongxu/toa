@@ -1,6 +1,6 @@
 {
   "name": "tonly",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "return whitelisted properties of an object",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",

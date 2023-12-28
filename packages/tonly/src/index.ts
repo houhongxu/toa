@@ -1,4 +1,7 @@
-export function only(obj: Record<string, any>, keys: string | string[]) {
+export default function only(
+  obj: Record<string, any>,
+  keys: string | string[],
+) {
   obj = obj || {}
 
   let splitedKeys: string[]
