@@ -20,24 +20,33 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
-  default: () => only
+  default: () => compose
 });
 module.exports = __toCommonJS(src_exports);
-function only(obj, keys) {
-  obj = obj || {};
-  let splitedKeys;
-  if (typeof keys === "string") {
-    splitedKeys = keys.split(/ +/);
-  } else if (Array.isArray(keys)) {
-    splitedKeys = keys;
-  } else {
-    throw new Error("keys needs to be a string or an array of strings");
+function compose(middlewareStack) {
+  if (!Array.isArray(middlewareStack))
+    throw new TypeError("Middleware stack must be an array!");
+  for (const middleware of middlewareStack) {
+    if (typeof middleware !== "function")
+      throw new TypeError("Middleware must be composed of functions!");
   }
-  return splitedKeys.reduce((pre, cur) => {
-    if (obj[cur] === null || obj[cur] === void 0) {
-      return pre;
+  return (req, res) => {
+    let index = -1;
+    function dispatch(i) {
+      if (i <= index) {
+        return Promise.reject(new Error("next() call more than once!"));
+      }
+      index = i;
+      const middleware = middlewareStack[i];
+      if (i >= middlewareStack.length) {
+        return Promise.resolve();
+      }
+      try {
+        return Promise.resolve(middleware(req, res, dispatch.bind(null, i + 1)));
+      } catch (err) {
+        return Promise.reject(err);
+      }
     }
-    pre[cur] = obj[cur];
-    return pre;
-  }, {});
+    dispatch(0);
+  };
 }

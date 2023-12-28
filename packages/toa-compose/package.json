@@ -1,9 +1,9 @@
 {
-  "name": "toa",
+  "name": "toa-compose",
   "version": "0.0.1",
   "description": "",
-  "main": "./lib/application.js",
-  "types": "./lib/application.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.js",
   "files": [
     "./lib"
   ],
@@ -15,8 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tonly": "workspace:*",
-    "toa-compose": "workspace:*"
-
+    "tonly": "workspace:*"
   }
 }

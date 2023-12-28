@@ -35,6 +35,15 @@ importers:
 
   packages/toa:
     dependencies:
+      toa-compose:
+        specifier: workspace:*
+        version: link:../toa-compose
+      tonly:
+        specifier: workspace:*
+        version: link:../tonly
+
+  packages/toa-compose:
+    dependencies:
       tonly:
         specifier: workspace:*
         version: link:../tonly
