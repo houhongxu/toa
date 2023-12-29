@@ -26,29 +26,31 @@ importers:
 
   examples/server:
     dependencies:
-      toa:
+      tooa:
         specifier: workspace:*
-        version: link:../../packages/toa
+        version: link:../../packages/tooa
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.10.5)(typescript@5.3.3)
 
-  packages/toa:
-    dependencies:
-      toa-compose:
-        specifier: workspace:*
-        version: link:../toa-compose
-      tonly:
-        specifier: workspace:*
-        version: link:../tonly
-
-  packages/toa-compose:
-    dependencies:
-      tonly:
-        specifier: workspace:*
-        version: link:../tonly
+  packages/telegates: {}
 
   packages/tonly: {}
+
+  packages/tooa:
+    dependencies:
+      tonly:
+        specifier: workspace:*
+        version: link:../tonly
+      tooa-compose:
+        specifier: workspace:*
+        version: link:../tooa-compose
+
+  packages/tooa-compose:
+    dependencies:
+      tonly:
+        specifier: workspace:*
+        version: link:../tonly
 
 packages:
 

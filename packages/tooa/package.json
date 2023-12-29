@@ -1,5 +1,5 @@
 {
-  "name": "toa-compose",
+  "name": "tooa",
   "version": "0.0.1",
   "description": "",
   "main": "./lib/index.js",
@@ -8,13 +8,14 @@
     "./lib"
   ],
   "scripts": {
-    "build": "npx tsup ./src/** --dts --out-dir=lib",
+    "build": "npx tsup ./src/index.ts --dts --out-dir=lib",
     "dev": "pnpm build --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tonly": "workspace:*"
+    "tonly": "workspace:*",
+    "tooa-compose": "workspace:*"
   }
 }

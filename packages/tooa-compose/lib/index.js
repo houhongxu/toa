@@ -20,9 +20,11 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
-  default: () => compose
+  default: () => src_default
 });
 module.exports = __toCommonJS(src_exports);
+
+// src/compose.ts
 function compose(middlewareStack) {
   if (!Array.isArray(middlewareStack))
     throw new TypeError("Middleware stack must be an array!");
@@ -30,23 +32,26 @@ function compose(middlewareStack) {
     if (typeof middleware !== "function")
       throw new TypeError("Middleware must be composed of functions!");
   }
-  return (req, res) => {
+  return (ctx) => {
     let index = -1;
     function dispatch(i) {
       if (i <= index) {
         return Promise.reject(new Error("next() call more than once!"));
       }
       index = i;
-      const middleware = middlewareStack[i];
-      if (i >= middlewareStack.length) {
+      let middleware = middlewareStack[i];
+      if (i === middlewareStack.length) {
         return Promise.resolve();
       }
       try {
-        return Promise.resolve(middleware(req, res, dispatch.bind(null, i + 1)));
+        return Promise.resolve(middleware(ctx, dispatch.bind(null, i + 1)));
       } catch (err) {
         return Promise.reject(err);
       }
     }
-    dispatch(0);
+    return dispatch(0);
   };
 }
+
+// src/index.ts
+var src_default = compose;

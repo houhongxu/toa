@@ -1,0 +1,21 @@
+{
+  "name": "telegates",
+  "version": "0.0.1",
+  "description": "delegate methods and accessors to another property",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "./lib"
+  ],
+  "scripts": {
+    "build": "npx tsup ./src/** --dts --out-dir=lib",
+    "dev": "pnpm build --watch"
+  },
+  "keywords": [
+    "delegate",
+    "delegation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}

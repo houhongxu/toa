@@ -1,21 +1,20 @@
-import Toa from 'toa'
+import tooa from 'tooa'
 
-const app = new Toa()
+const app = new tooa()
 
-app.use(async (req, res, next) => {
+app.use(async (ctx, next) => {
   console.log(1)
 
   const v = await next()
 
   console.log('v:', v)
 
-  res.writeHead(200)
-
+  // 目前只暴露出body赋值
   // 浏览器测试执行两次是因为浏览器会请求一次http://localhost:3000/favicon.ico
-  res.end('A request come in')
+  ctx.body = 'A request come in'
 })
 
-app.use(async (req, res, next) => {
+app.use(async (ctx, next) => {
   console.log(2)
 
   await next()
@@ -23,7 +22,7 @@ app.use(async (req, res, next) => {
   return 2
 })
 
-app.use(async (req, res, next) => {
+app.use(async (ctx, next) => {
   console.log(3)
 })
 

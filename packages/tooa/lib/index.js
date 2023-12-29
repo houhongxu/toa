@@ -11025,7 +11025,7 @@ var require_koa_compose = __commonJS({
         if (typeof fn2 !== "function")
           throw new TypeError("Middleware must be composed of functions!");
       }
-      return function(context, next) {
+      return function(context2, next) {
         let index = -1;
         return dispatch(0);
         function dispatch(i) {
@@ -11038,7 +11038,7 @@ var require_koa_compose = __commonJS({
           if (!fn2)
             return Promise.resolve();
           try {
-            return Promise.resolve(fn2(context, dispatch.bind(null, i + 1)));
+            return Promise.resolve(fn2(context2, dispatch.bind(null, i + 1)));
           } catch (err) {
             return Promise.reject(err);
           }
@@ -11332,13 +11332,13 @@ var require_depd = __commonJS({
       if (!funcName) {
         funcName = "<anonymous@" + formatLocation(site2) + ">";
       }
-      var context = callSite.getThis();
-      var typeName = context && callSite.getTypeName();
+      var context2 = callSite.getThis();
+      var typeName = context2 && callSite.getTypeName();
       if (typeName === "Object") {
         typeName = void 0;
       }
       if (typeName === "Function") {
-        typeName = context.name || typeName;
+        typeName = context2.name || typeName;
       }
       return typeName && callSite.getMethodName() ? typeName + "." + funcName : funcName;
     }
@@ -12106,13 +12106,13 @@ var require_depd2 = __commonJS({
       if (!funcName) {
         funcName = "<anonymous@" + formatLocation2(site2) + ">";
       }
-      var context = callSite.getThis();
-      var typeName = context && callSite.getTypeName();
+      var context2 = callSite.getThis();
+      var typeName = context2 && callSite.getTypeName();
       if (typeName === "Object") {
         typeName = void 0;
       }
       if (typeName === "Function") {
-        typeName = context.name || typeName;
+        typeName = context2.name || typeName;
       }
       return typeName && callSite.getMethodName() ? typeName + "." + funcName : funcName;
     }
@@ -12339,12 +12339,12 @@ var require_cookies = __commonJS({
     var cache = {};
     var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
     var SAME_SITE_REGEXP = /^(?:lax|none|strict)$/i;
-    function Cookies(request, response, options) {
+    function Cookies(request2, response2, options) {
       if (!(this instanceof Cookies))
-        return new Cookies(request, response, options);
+        return new Cookies(request2, response2, options);
       this.secure = void 0;
-      this.request = request;
-      this.response = response;
+      this.request = request2;
+      this.response = response2;
       if (options) {
         if (Array.isArray(options)) {
           deprecate2('"keys" argument; provide using options {"keys": [...]}');
@@ -13103,11 +13103,11 @@ var require_negotiator = __commonJS({
     var preferredMediaTypes = require_mediaType();
     module2.exports = Negotiator;
     module2.exports.Negotiator = Negotiator;
-    function Negotiator(request) {
+    function Negotiator(request2) {
       if (!(this instanceof Negotiator)) {
-        return new Negotiator(request);
+        return new Negotiator(request2);
       }
-      this.request = request;
+      this.request = request2;
     }
     Negotiator.prototype.charset = function charset(available) {
       var set = this.charsets(available);
@@ -14297,10 +14297,10 @@ var require_application = __commonJS({
     var debug = require_src()("koa:application");
     var onFinished = require_on_finished();
     var assert = require("assert");
-    var response = require_response();
+    var response2 = require_response();
     var compose2 = require_koa_compose();
-    var context = require_context();
-    var request = require_request();
+    var context2 = require_context();
+    var request2 = require_request();
     var statuses = require_statuses();
     var Emitter2 = require("events");
     var util = require("util");
@@ -14338,9 +14338,9 @@ var require_application = __commonJS({
         if (options.keys)
           this.keys = options.keys;
         this.middleware = [];
-        this.context = Object.create(context);
-        this.request = Object.create(request);
-        this.response = Object.create(response);
+        this.context = Object.create(context2);
+        this.request = Object.create(request2);
+        this.response = Object.create(response2);
         if (util.inspect.custom) {
           this[util.inspect.custom] = this.inspect;
         }
@@ -14455,18 +14455,18 @@ var require_application = __commonJS({
        * @api private
        */
       createContext(req, res) {
-        const context2 = Object.create(this.context);
-        const request2 = context2.request = Object.create(this.request);
-        const response2 = context2.response = Object.create(this.response);
-        context2.app = request2.app = response2.app = this;
-        context2.req = request2.req = response2.req = req;
-        context2.res = request2.res = response2.res = res;
-        request2.ctx = response2.ctx = context2;
-        request2.response = response2;
-        response2.request = request2;
-        context2.originalUrl = request2.originalUrl = req.url;
-        context2.state = {};
-        return context2;
+        const context3 = Object.create(this.context);
+        const request3 = context3.request = Object.create(this.request);
+        const response3 = context3.response = Object.create(this.response);
+        context3.app = request3.app = response3.app = this;
+        context3.req = request3.req = response3.req = req;
+        context3.res = request3.res = response3.res = res;
+        request3.ctx = response3.ctx = context3;
+        request3.response = response3;
+        response3.request = request3;
+        context3.originalUrl = request3.originalUrl = req.url;
+        context3.state = {};
+        return context3;
       }
       /**
        * Default error handler.
@@ -14558,12 +14558,14 @@ ${msg.replace(/^/gm, "  ")}
   }
 });
 
-// src/application.ts
-var application_exports = {};
-__export(application_exports, {
-  default: () => Application
+// src/index.ts
+var src_exports = {};
+__export(src_exports, {
+  default: () => src_default
 });
-module.exports = __toCommonJS(application_exports);
+module.exports = __toCommonJS(src_exports);
+
+// src/application.ts
 var import_events = __toESM(require("events"));
 var import_http = __toESM(require("http"));
 
@@ -14573,19 +14575,49 @@ var koa_default = import_application.default;
 var HttpError = import_application.default.HttpError;
 
 // src/application.ts
-var import_toa_compose = __toESM(require("toa-compose"));
+var import_tooa_compose = __toESM(require("tooa-compose"));
+
+// src/context.ts
+var context = {
+  get url() {
+    var _a;
+    return (_a = this.tooaReq) == null ? void 0 : _a.url;
+  },
+  get body() {
+    var _a;
+    return (_a = this.tooaRes) == null ? void 0 : _a.body;
+  },
+  set body(body) {
+    if (this.tooaRes) {
+      this.tooaRes.body = body;
+    }
+  }
+};
+
+// src/request.ts
+var request = {
+  get url() {
+    var _a;
+    return (_a = this.req) == null ? void 0 : _a.url;
+  }
+};
+
+// src/response.ts
+var response = {
+  body: void 0
+};
+
+// src/application.ts
 var k = new koa_default();
-k.use((c, n) => {
-});
 var Application = class extends import_events.default {
-  // context: BaseContext & ContextT
-  // request: BaseRequest
-  // response: BaseResponse
   constructor(options) {
     super();
     options = options || {};
     this.middlewareStack = [];
-    this.compose = options.compose || import_toa_compose.default;
+    this.compose = options.compose || import_tooa_compose.default;
+    this.context = Object.create(context);
+    this.request = Object.create(request);
+    this.response = Object.create(response);
   }
   listen(port, listeningListener) {
     const server = import_http.default.createServer(this.callback());
@@ -14597,11 +14629,34 @@ var Application = class extends import_events.default {
     this.middlewareStack.push(middleware);
     return this;
   }
+  // 将node数据转为ctx
   callback() {
     const fn2 = this.compose(this.middlewareStack);
-    return fn2;
+    return (req, res) => __async(this, null, function* () {
+      const context2 = this.createContext(req, res);
+      yield fn2(context2);
+      if (context2.tooaRes && context2.tooaRes.res) {
+        context2.tooaRes.res.writeHead(200);
+        context2.tooaRes.res.end(context2.body);
+      }
+    });
+  }
+  createContext(req, res) {
+    const context2 = Object.create(this.context);
+    const request2 = context2.tooaReq = Object.create(
+      this.request
+    );
+    const response2 = context2.tooaRes = Object.create(
+      this.response
+    );
+    context2.req = request2.req = response2.req = req;
+    context2.res = request2.res = response2.res = res;
+    return context2;
   }
 };
+
+// src/index.ts
+var src_default = Application;
 /*! Bundled license information:
 
 ee-first/index.js:
