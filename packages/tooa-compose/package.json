@@ -1,7 +1,7 @@
 {
   "name": "tooa-compose",
   "version": "0.0.1",
-  "description": "",
+  "description": "compose Tooa middleware",
   "main": "./lib/index.js",
   "types": "./lib/index.js",
   "files": [
@@ -11,7 +11,11 @@
     "build": "npx tsup ./src/index.ts --dts --out-dir=lib",
     "dev": "pnpm build --watch"
   },
-  "keywords": [],
+  "keywords": [
+    "koa",
+    "middleware",
+    "compose"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

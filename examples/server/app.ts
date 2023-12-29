@@ -24,6 +24,12 @@ app.use(async (ctx, next) => {
 
 app.use(async (ctx, next) => {
   console.log(3)
+  throw new Error('3 is error')
+})
+
+app.on('error', (err, ctx) => {
+  console.log('err:', err)
+  console.log('url:', ctx.url)
 })
 
 app.listen(3000, () => {

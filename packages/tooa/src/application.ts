@@ -8,14 +8,12 @@ import {
   TooaRequestType,
   TooaResponseType,
 } from './types'
-import koa from 'koa'
 import compose from 'tooa-compose'
 import { context } from './context'
 import { request } from './request'
 import { response } from './response'
 
-const k = new koa()
-
+// 继承的node事件模块
 export class Application extends Emitter {
   middlewareStack: TooaMiddlewareType[]
   compose: any
@@ -59,11 +57,16 @@ export class Application extends Emitter {
     return async (req: IncomingMessage, res: ServerResponse) => {
       const context = this.createContext(req, res)
 
-      await fn(context)
+      try {
+        await fn(context)
 
-      if (context.tooaRes && context.tooaRes.res) {
-        context.tooaRes.res.writeHead(200)
-        context.tooaRes.res.end(context.body)
+        if (context.tooaRes && context.tooaRes.res) {
+          context.tooaRes.res.writeHead(200)
+          context.tooaRes.res.end(context.body)
+        }
+      } catch (error) {
+        console.error('<=== Server Error ===>')
+        this.emit('error', error, context)
       }
     }
   }
