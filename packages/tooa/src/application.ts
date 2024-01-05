@@ -50,7 +50,7 @@ export class Application extends Emitter {
     return this
   }
 
-  // 将node数据转为ctx
+  // 将node数据转为ctx，用户通过callback也能获取node原生中间件配合http的createServer创建服务
   callback() {
     const fn = this.compose(this.middlewareStack)
 
